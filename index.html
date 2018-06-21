@@ -3,6 +3,7 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300' rel='stylesheet' type='text/css'>
     <link href='css/materialize.min.css' rel='stylesheet' type='text/css'>
+    <link href='css/index.css' rel='stylesheet' type='text/css'>
     <script src="libs/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -10,12 +11,23 @@
     <div class="container">
         <h1 style="text-align:center">{{title}}</h1>
         <div class="row">
-            <div class="input-field col s5 offset-s3">
-                <input id="repoUrl" type="text" class="validate">
-                <label for="repoUrl">Github Repo URL</label>
+            <div ng-show="!loader">
+                <div class="input-field col s5 offset-s3">
+                    <input id="repoUrl" type="text" class="validate" ng-model="url">
+                    <label for="repoUrl">Github Repo URL</label>
+                </div>
+                <div class="col s2 btnWrap">
+                    <a class="waves-effect waves-light btn" ng-click="submit(url)">Go</a>
+                </div>
             </div>
-            <div class="col s2">
-                <a class="waves-effect waves-light btn" ng-click="submit()">Go</a>
+            <div ng-show="loader">
+                <div class="col s6 offset-s3">
+                    <span style="text-align:center">Downloading Repository...</span>
+                    <div class="progress">
+                        <div class="indeterminate">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

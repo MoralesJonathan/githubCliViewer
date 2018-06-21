@@ -1,8 +1,12 @@
 app.controller('mainController', ['$scope', 'http',  function ($scope, http) {
-    $scope.title = "Hello World!",
-    $scope.submit = function (url) {
-    http.then(function (result) {
-        //Do something
-    })
+    $scope.title = "Github CLI Viewer",
+    $scope.loader = false,
+    $scope.url = '',
+        $scope.submit = function (url) {
+        $scope.loader = true;
+        http(url).then(function (result) {
+            alert(result.data)
+            $scope.loader = false;
+        })
     };
 }]);

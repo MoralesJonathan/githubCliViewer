@@ -1,8 +1,10 @@
 app.factory('http', ['$http', function ($http) {
-    return $http.post('/api/uploadUrl')
-        .then(function (data) {
-            return data;
-        }, function (err) {
-            return err;
-        });
+    return function (url) {
+        return $http.post('/api/uploadUrl', { url: url })
+            .then(function (data) {
+                return data;
+            }, function (err) {
+                return err;
+            });
+    }
 }]);
