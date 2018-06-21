@@ -1,0 +1,23 @@
+{
+  "name": "githubcliviewer",
+  "version": "1.0.0",
+  "description": "View Github Cli apps online",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonmorazav/githubCliViewer.git"
+  },
+  "author": "Jonathan Morales <jonmorazav@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonmorazav/githubCliViewer/issues"
+  },
+  "homepage": "https://github.com/jonmorazav/githubCliViewer#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
