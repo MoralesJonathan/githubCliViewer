@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body ng-app="cliApp" ng-controller="mainController" ng-init="reqRoom()">
-    <div class="container">
+    <div class="container" ng-class="{'expanded': isExpanded}">
         <h1 style="text-align:center">{{title}}</h1>
         <div ng-include="bodyView">
         </div>

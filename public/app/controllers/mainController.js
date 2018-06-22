@@ -7,6 +7,8 @@ app.controller('mainController', ['$scope', 'http', 'socket', function ($scope, 
     $scope.terminalLines = [];
     $scope.terminal;
     $scope.inputString = '';
+    $scope.isExpanded = false;
+    $scope.isMinified = false;
     $scope.terminalInput = function (key) {
         if (key.which === 13) {
             http($scope.terminal, 'sendInput/' + $scope.inputString).then(function () {
@@ -32,6 +34,13 @@ app.controller('mainController', ['$scope', 'http', 'socket', function ($scope, 
         http('', 'newRoom').then(function (body) {
             socket.emit('joinRoom', body.data);
         })
+    };
+    $scope.expandTerm = function () {
+        if ($scope.isMinified) $scope.isMinified = !$scope.isMinified;
+        $scope.isExpanded = !$scope.isExpanded;
+    };
+    $scope.hideTerm = function () {
+        $scope.isMinified = !$scope.isMinified;
     };
     $scope.refresh = function () {
         location.reload();

@@ -1,10 +1,10 @@
 ﻿<div id="terminalWindow">
-    <div id="terminalMenu">
-        <div class="terminalButtons close"></div>
-        <div class="terminalButtons minimize"></div>
-        <div class="terminalButtons expand"></div>
+    <div id="terminalMenu" ng-class="{'expanded': isExpanded}">
+        <a><div class="terminalButtons close" ng-click="refresh()"></div></a>
+        <a><div class="terminalButtons minimize" ng-click="hideTerm()"></div></a>
+        <a><div class="terminalButtons expand" ng-click="expandTerm()"></div></a>
     </div>
-    <div id="terminalView">
+    <div id="terminalView" ng-class="{'expanded': isExpanded, 'minified': isMinified}" >
         <p class="terminal" ng-repeat="line in terminalLines"> $ {{line}} </p>
         <div id="termUserInput">
             <span class="terminal">$ </span>

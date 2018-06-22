@@ -1,4 +1,8 @@
-﻿.btnWrap{
+﻿a:hover {
+    cursor: pointer;
+}
+
+.btnWrap{
     height:60px
 }
 
@@ -107,6 +111,15 @@ p.terminal, span.terminal {
     color: white;
 }
 
+.expanded {
+    width: 100%!important;
+    max-width: initial!important;
+}
+
+.minified {
+    padding: 0!important;
+    height: 0!important;
+}
 @-webkit-keyframes blink {
     0% {
         opacity: 0;

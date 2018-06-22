@@ -54,10 +54,9 @@ module.exports = {
         terminal.on('close', code => {
             console.log(`Node process exited with code ${code}`);
             if (!code == 0) {
-                io.sockets.in(req.session.socketRoom).emit('error', "Error running node server. Unable to continue. Please refresh this page to try again.")
+                io.sockets.in(req.session.socketRoom).emit('terminalMessage', "Error running node server. Unable to continue. Please refresh this page to try again.")
                 io.sockets.in(req.session.socketRoom).emit('terminalEnd', req.session.socketRoom)
                 req.session.socketRoom = null;
-                res.send('Error running Node').status(500)
             } else {
                 terminalProcesses.splice(terminalNum, 1)
                 io.sockets.in(req.session.socketRoom).emit('terminalMessage', "Terminal Closed. Please refresh page to run new app")
@@ -66,14 +65,14 @@ module.exports = {
                 rimraf('downloadedRepos/' + req.body.data.repo, e => { if(e) console.log(e) })
             }
         });
-
         res.send(terminalNum.toString())
     },
     sendInput: (req, res) => {
         io.sockets.in(req.session.socketRoom).emit('terminalMessage', req.params.text)
         let terminal = terminalProcesses[parseInt(req.body.data.data)]
         terminal.stdin.setEncoding('utf-8');
-        terminal.stdin.write(req.params.text + "\n");
+        terminal.stdin.write("\u001b[B");
+        terminal.stdin.write("\n");
         terminal.stdin.end();
         res.sendStatus(200);
     },
@@ -92,7 +91,8 @@ function npmInstall(repoName, nodeFileName, req, res) {
         io.sockets.in(req.session.socketRoom).emit('error', "Error finding node server file. Please make sure your node file is specified in the package.json under 'main'. For more information refer to https://bit.ly/2IijrOy. Reload page to try again."),
         io.sockets.in(req.session.socketRoom).emit('terminalEnd', req.session.socketRoom),
         req.session.socketRoom = null,
-        res.sendStatus(500)
+        res.sendStatus(500),
+        rimraf('downloadedRepos/' + repoName, e => { if (e) console.log(e) })
     ) : (
         io.sockets.in(req.session.socketRoom).emit('uploadProgress', "Installing Dependencies..."),
         terminalProcess = spawn('npm', ['install'], { shell: true, cwd: 'downloadedRepos/' + repoName }),
@@ -112,6 +112,7 @@ function npmInstall(repoName, nodeFileName, req, res) {
                 io.sockets.in(req.session.socketRoom).emit('terminalEnd', req.session.socketRoom)
                 req.session.socketRoom = null;
                 res.send('Error performing NPM install').status(500)
+                rimraf('downloadedRepos/' + repoName, e => { if (e) console.log(e) })
             } else {
                 res.send({ repo: repoName, main: nodeFileName }).status(200)
             }
