@@ -1,5 +1,9 @@
 ﻿module.exports.connect = function (socket_io) {
-    //https://stackoverflow.com/questions/19559135/use-socket-io-in-controllers
-    console.log("A user has connected!")
-    socket_io.join('test123')
+    console.log("A user has connected")
+    socket_io.on('joinRoom', function (room) {
+        socket_io.join(room);
+    });
+    socket_io.on('leaveRoom', function (room) {
+        socket_io.leave(room);
+    });
 }

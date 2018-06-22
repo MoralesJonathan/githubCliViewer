@@ -102,6 +102,11 @@ p.terminal, span.terminal {
     animation: blink 1s 2s infinite forwards;
 }
 
+
+.card-panel h3{
+    color: white;
+}
+
 @-webkit-keyframes blink {
     0% {
         opacity: 0;

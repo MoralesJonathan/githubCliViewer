@@ -21,7 +21,10 @@
     "body-parser": "^1.18.3",
     "decompress": "^4.2.0",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "request": "^2.87.0",
-    "socket.io": "^2.1.1"
+    "rimraf": "^2.6.2",
+    "socket.io": "^2.1.1",
+    "uuid": "^3.2.1"
   }
 }
