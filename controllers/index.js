@@ -14,11 +14,12 @@ module.exports = {
         res.send("Page Not Found").status(404)
     },
     sendIndex: (req, res) => {
-        res.sendFile(path.join(__dirname, '../', 'index.html'));
+        res.sendFile(path.join(__dirname, '../public/', 'index.html'));
     }
 };
 
 function unzip(zip, req, res) {
+    io.sockets.in('test123').emit('uploadProgress', "Unzipping Repository...")
     decompress(zip, 'downloadedRepos/').then(files => {
         npmInstall(files[0].path, req, res)
     }).catch(error => {
@@ -27,11 +28,11 @@ function unzip(zip, req, res) {
 };
 
 function npmInstall(repoName, req, res) {
-    let terminalProcess = spawn('npm.cmd', ['install', 'express'], { cwd: 'downloadedRepos/' + repoName }),
-        stdout = "";
+    io.sockets.in('test123').emit('uploadProgress', "Installing Dependencies...")
+    let terminalProcess = spawn('npm.cmd', ['install', 'express'], { cwd: 'downloadedRepos/' + repoName });
     terminalProcess.stdout.on('data', data => {
         console.log(`stdout: ${data}`);
-        stdout = `${stdout}\ ${data}`
+        io.sockets.in('test123').emit('terminalMessage', data.toString('utf8'))
     });
 
     terminalProcess.stderr.on('data', data => {
@@ -43,7 +44,8 @@ function npmInstall(repoName, req, res) {
         if (!code == 0) {
             res.send('Error performing NPM install').status(500)
         } else {
-            res.send(stdout).status(500)
+            res.sendStatus(200);
         }
     });
 }
+

@@ -1,1 +1,1 @@
-var app = angular.module('cliApp', []);
+var app = angular.module('cliApp', ['btford.socket-io']);

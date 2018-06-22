@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300' rel='stylesheet' type='text/css'>
+    <link href='css/materialize.min.css' rel='stylesheet' type='text/css'>
+    <link href='css/index.css' rel='stylesheet' type='text/css'>
+    <script src="libs/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body ng-app="cliApp" ng-controller="mainController">
+    <div class="container">
+        <h1 style="text-align:center">{{title}}</h1>
+        <div ng-include="bodyView">
+        </div>
+    </div>
+    <script src="app/app.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="libs/angular-socket-io/socket.min.js"></script>
+    <script src="app/controllers/mainController.js"></script>
+    <script src="app/services/http.js"></script>
+    <script src="app/services/socketService.js"></script>
+    <script src="libs/materialize.min.js"></script>
+</body>
+</html>

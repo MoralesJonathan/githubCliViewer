@@ -3,3 +3,4 @@ githubCliViewer.njsproj
 .vs
 /bin
 /obj
+/downloadedRepos/*
