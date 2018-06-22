@@ -9,7 +9,7 @@
 </head>
 <body ng-app="cliApp" ng-controller="mainController">
     <div class="container">
-        <h1 style="text-align:center">{{title}}</h1>
+        <h1 style="text-align:center" ng-click="refresh()">{{title}}</h1>
         <div ng-include="bodyView">
         </div>
     </div>

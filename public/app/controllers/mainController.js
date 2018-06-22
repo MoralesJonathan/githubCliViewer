@@ -9,7 +9,6 @@ app.controller('mainController', ['$scope', 'http', 'socket', function ($scope, 
     $scope.inputString = '';
     $scope.terminalInput = function (key) {
         if (key.which === 13) {
-            console.log("KEY WAS " + $scope.inputString)
             http($scope.terminal, 'sendInput/' + $scope.inputString).then(function () {
                 $scope.inputString = '';
             })
@@ -25,6 +24,9 @@ app.controller('mainController', ['$scope', 'http', 'socket', function ($scope, 
                 $scope.terminal = terminalInstance;
             })
         })
+    };
+    $scope.refresh = function () {
+        location.reload();
     };
     socket.on('uploadProgress', function (msg) {
         $scope.loadingMessage = msg

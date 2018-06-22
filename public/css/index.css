@@ -7,11 +7,14 @@
 }
 
 input[type="text"].browser-default {
-    color: white;
+    color: lawngreen;
     border: none;
     background-color: transparent;
     outline: none;
-    width: 25px;
+    width: 50%;
+    font-size: 1.25em;
+    font-family: monospace;
+    white-space: normal;
 }
 
 .fakeButtons {
@@ -59,7 +62,7 @@ input[type="text"].browser-default {
     border-bottom-right-radius: 5px;
 }
 
-p.terminal {
+p.terminal, span.terminal {
     position: relative;
     text-align: left;
     font-size: 1.25em;
@@ -69,10 +72,6 @@ p.terminal {
     color: lawngreen;
 }
 
-span.terminal {
-    color: #fff;
-    font-weight: bold;
-}
 
 .cursor {
     -webkit-animation: blink 1s 2s infinite forwards;

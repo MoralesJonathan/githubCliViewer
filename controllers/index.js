@@ -13,9 +13,8 @@ module.exports = {
         })
     },
     runNode: (req, res) => {
-        io.sockets.in('test123').emit('terminalMessage', 'Running Node File...')
-        //let terminalProcess = spawn('node.exe', ['liri.js'], { cwd: 'downloadedRepos/' + req.body.data });
-        terminalProcesses.push(spawn('node.exe', ['liri.js'], { cwd: 'downloadedRepos/test' }));
+        io.sockets.in('test123').emit('terminalMessage', 'Running Node File...');
+        terminalProcesses.push(spawn('node.exe', ['server.js'], { cwd: 'downloadedRepos/' + req.body.data.data }));
         let terminalNum = terminalProcesses.length - 1;
         let terminal = terminalProcesses[terminalNum];
         terminal.stdout.on('data', data => {
@@ -30,7 +29,8 @@ module.exports = {
         terminal.on('close', code => {
             console.log(`Node process exited with code ${code}`);
             terminalProcesses.splice(terminalNum, 1)
-            io.sockets.in('test123').emit('terminalMessage',"Terminal Closed. Please refresh page to run new app")
+            io.sockets.in('test123').emit('terminalMessage', "Terminal Closed. Please refresh page to run new app")
+            io.sockets.in('test123').emit('terminalEnd', "")
         });
 
         res.send(terminalNum.toString())
