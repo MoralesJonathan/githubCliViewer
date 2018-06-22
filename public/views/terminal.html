@@ -4,10 +4,6 @@
     <div class="fakeButtons fakeZoom"></div>
 </div>
 <div class="fakeScreen">
-    <div ng-repeat="line in terminalLines">
-        <p class="line1 terminal"> $ {{line}} </p>
-        <span class="cursor terminal">_</span>
-    </div>
-    
-
+    <p class="line1 terminal" ng-repeat="line in terminalLines"> $ {{line}} </p>
+    <input id="termUserInput" type="text" class="browser-default" ng-keypress="terminalInput($event)" ng-model="$parent.inputString" />
 </div>

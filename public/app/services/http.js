@@ -1,6 +1,6 @@
 app.factory('http', ['$http', function ($http) {
-    return function (url) {
-        return $http.post('/api/uploadUrl', { url: url })
+    return function (param1, apiUrl) {
+        return $http.post('/api/' + apiUrl, { data: param1 })
             .then(function (data) {
                 return data;
             }, function (err) {
