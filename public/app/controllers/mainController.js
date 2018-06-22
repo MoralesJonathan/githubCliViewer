@@ -17,10 +17,10 @@ app.controller('mainController', ['$scope', 'http', 'socket', function ($scope, 
     $scope.submit = function (url) {
         $scope.loader = true;
         $scope.loadingMessage = 'Downloading Repository...'
-        http(url, 'uploadUrl').then(function (repo) {
+        http(url, 'uploadUrl').then(function (body) {
             $scope.loader = false;
             $scope.bodyView = "../views/terminal.html";
-            http(repo, 'startNode').then(function (terminalInstance) {
+            http(body.data, 'startNode').then(function (terminalInstance) {
                 $scope.terminal = terminalInstance;
             })
         })
@@ -36,6 +36,10 @@ app.controller('mainController', ['$scope', 'http', 'socket', function ($scope, 
     });
     socket.on('terminalEnd', function (msg) {
         angular.element(document.querySelector('#termUserInput')).remove();
+    });
+    socket.on('error', function (msg) {
+        $scope.bodyView = "../views/error.html";
+        $scope.errorMessage = msg;
     });
 }]);
 
