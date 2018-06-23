@@ -10,6 +10,11 @@
     top: 25px
 }
 
+.container {
+    -webkit-transition:  width 1s;
+    transition: width 1s;
+}
+
 input[type="text"].browser-default {
     color: lawngreen;
     border: none;
@@ -57,6 +62,8 @@ input[type="text"].browser-default {
     margin: 0 auto;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    -webkit-transition: width 1s, height 0.5s;
+    transition: width 1s, height 0.5s;
 }
 
 #terminalView {
@@ -69,6 +76,8 @@ input[type="text"].browser-default {
     border-bottom-right-radius: 5px;
     height: 55vh;
     overflow-y: scroll;
+    -webkit-transition: width 1s, height 0.5s;
+    transition: width 1s, height 0.5s;
 }
 
 #terminalView::-webkit-scrollbar-track {
@@ -96,6 +105,7 @@ p.terminal, span.terminal {
     white-space: normal;
     width: 100%;
     color: lawngreen;
+    white-space: pre-line;
 }
 
 
@@ -117,8 +127,10 @@ p.terminal, span.terminal {
 }
 
 .minified {
-    padding: 0!important;
-    height: 0!important;
+    padding: 0 !important;
+    height: 0 !important;
+    -webkit-transition: height 0.5s, padding 0.1s 0.3s !important;
+    transition: height 0.5s, padding 0.1s 0.3s !important;
 }
 @-webkit-keyframes blink {
     0% {
