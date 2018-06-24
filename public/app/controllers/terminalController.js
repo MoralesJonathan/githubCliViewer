@@ -1,5 +1,4 @@
 ﻿app.controller('terminalController', ['$scope', 'http', 'socket', '$timeout', function ($scope, http, socket, $timeout) {
-    $scope.isExpanded = false;
     $scope.isMinified = false;
     $scope.terminalInput = function (key) {
         $timeout(function () {
@@ -12,6 +11,7 @@
     $scope.expandTerm = function () {
         if ($scope.isMinified) $scope.isMinified = !$scope.isMinified;
         $scope.isExpanded = !$scope.isExpanded;
+        document.getElementsByClassName('container')[0].classList.toggle("expanded");
     };
     $scope.hideTerm = function () {
         $scope.isMinified = !$scope.isMinified;
