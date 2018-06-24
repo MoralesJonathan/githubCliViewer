@@ -1,8 +1,9 @@
 ﻿<div class="row">
     <div ng-show="!loader">
         <div class="input-field col s5 offset-s3">
-            <input id="repoUrl" type="text" class="validate" ng-model="url">
+            <input id="repoUrl" type="text" class="validate" ng-class="validate" ng-model="url" ng-pattern="/(^github.com|^(https|http):\/\/github.com)\/[\w-]+\/[\w\d-]+(\/tree\/[\w\d-]+)?/i">
             <label for="repoUrl">Github Repo URL</label>
+            <span style="color:red">{{urlError}}</span>
         </div>
         <div class="col s2 btnWrap">
             <a class="waves-effect waves-light btn" ng-click="submit(url)">Go</a>

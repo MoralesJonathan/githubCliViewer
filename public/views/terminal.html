@@ -4,11 +4,11 @@
         <a><div class="terminalButtons minimize" ng-click="hideTerm()"></div></a>
         <a><div class="terminalButtons expand" ng-click="expandTerm()"></div></a>
     </div>
-    <div id="terminalView" ng-class="{'expanded': isExpanded, 'minified': isMinified}" >
-        <p class="terminal" ng-repeat="line in terminalLines"> $ {{line}} </p>
+    <div id="terminalView" ng-class="{'expanded': isExpanded, 'minified': isMinified}">
+        <p class="terminal" ng-repeat="line in terminalLines track by $index"> $ {{line}} </p>
         <div id="termUserInput">
             <span class="terminal">$ </span>
-            <input type="text" class="browser-default" ng-keypress="terminalInput($event)" ng-model="$parent.inputString" />
+            <input type="text" class="browser-default" ng-model="$parent.inputString"  ng-keydown="terminalInput($event)" />
         </div>
     </div>
 
