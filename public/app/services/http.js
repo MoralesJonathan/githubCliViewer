@@ -6,5 +6,5 @@ app.factory('http', ['$http', function ($http) {
             }, function (err) {
                 return err;
             });
-    }
+    };
 }]);

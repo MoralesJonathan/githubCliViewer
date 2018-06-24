@@ -1,20 +1,20 @@
-﻿const mainController  = require('./index.js')
-module.exports.connect = function (socket_io) {
-    console.log("A user has connected")
-    socket_io.on('joinRoom', function (room) {
+﻿const mainController = require('./index.js');
+module.exports.connect = socket_io => {
+    console.log("A user has connected");
+    socket_io.on('joinRoom', room => {
         socket_io.join(room);
     });
-    socket_io.on('leaveRoom', function (room) {
+    socket_io.on('leaveRoom', room => {
         socket_io.leave(room);
     });
-    socket_io.on('spawnProc', function (body) {
+    socket_io.on('spawnProc', body => {
         socket_io.spawnedProcess = body.data;
     });
-    socket_io.on('disconnect', function () {
+    socket_io.on('disconnect', () => {
         if (socket_io.spawnedProcess) {
-            let process = socket_io.spawnedProcess
-            mainController.killProcess(process)
+            const process = socket_io.spawnedProcess;
+            mainController.killProcess(process);
         }
-        console.log("A user has disconnected")
+        console.log("A user has disconnected");
     });
-}
+};

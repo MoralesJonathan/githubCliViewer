@@ -2,16 +2,16 @@
     cursor: pointer;
 }
 
-.btnWrap{
-    height:60px
+.btnWrap {
+    height: 60px
 }
 
-.btnWrap .btn {
-    top: 25px
-}
+    .btnWrap .btn {
+        top: 25px
+    }
 
 .container {
-    -webkit-transition:  width 1s;
+    -webkit-transition: width 1s;
     transition: width 1s;
 }
 
@@ -80,22 +80,22 @@ input[type="text"].browser-default {
     transition: width 1s, height 0.5s;
 }
 
-#terminalView::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #F5F5F5;
-}
+    #terminalView::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
 
-#terminalView::-webkit-scrollbar {
-    width: 12px;
-    background-color: #F5F5F5;
-}
+    #terminalView::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
 
-#terminalView::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
-}
+    #terminalView::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
 
 p.terminal, span.terminal {
     position: relative;
@@ -117,13 +117,13 @@ p.terminal, span.terminal {
 }
 
 
-.card-panel h3{
+.card-panel h3 {
     color: white;
 }
 
 .expanded {
-    width: 100%!important;
-    max-width: initial!important;
+    width: 100% !important;
+    max-width: initial !important;
 }
 
 .minified {
@@ -132,6 +132,7 @@ p.terminal, span.terminal {
     -webkit-transition: height 0.5s, padding 0.1s 0.3s !important;
     transition: height 0.5s, padding 0.1s 0.3s !important;
 }
+
 @-webkit-keyframes blink {
     0% {
         opacity: 0;

@@ -1,7 +1,6 @@
 const express = require('express'),
     app = express(),
     server = require('http').Server(app),
-    fs = require('fs'),
     PORT = process.env.PORT || 8080,
     bodyParser = require('body-parser'),
     session = require('express-session'),
@@ -16,7 +15,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true
-}))
+}));
 
 app.use(express.static('public'));
 app.use(routes);
@@ -24,6 +23,6 @@ app.use(routes);
 io.on('connection', socketController.connect);
 
 
-server.listen(PORT, function() {
-  console.log('Listening on port: ' + PORT);
+server.listen(PORT, () => {
+    console.log(`Listening on port:  ${PORT}`);
 });
