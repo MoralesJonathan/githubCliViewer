@@ -29,13 +29,16 @@ app.controller('mainController', ['$scope', 'http', 'socket', '$timeout', functi
                 $scope.loader = true,
                 $scope.loadingMessage = 'Downloading Repository...',
                 http(url, 'uploadUrl').then(function (body) {
-                    if (body.status !== 500) {
+                    if (body.status === 200) {
                         $scope.loader = false;
                         $scope.bodyView = "../views/terminal.html";
                         http(body.data, 'startNode').then(function (terminalInstance) {
                             $scope.terminal = terminalInstance;
                             socket.emit('spawnProc', terminalInstance);
                         });
+                    } else {
+                        alert("Oops! An unexpected error occured. Please try again later.")
+                        locaton.reload()
                     }
                 })
             );
@@ -61,6 +64,7 @@ app.controller('mainController', ['$scope', 'http', 'socket', '$timeout', functi
     socket.on('terminalMessage', function (msg) {
         $scope.terminalLines.push(msg);
         $scope.inputString = '';
+        document.getElementById("terminalView").scrollTop = document.getElementById("terminalView").scrollHeight;
     });
     socket.on('terminalEnd', function (room) {
         angular.element(document.querySelector('#termUserInput')).remove();
