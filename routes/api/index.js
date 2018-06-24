@@ -1,5 +1,5 @@
 const router = require("express").Router(),
-    controller = require("../../controllers");
+    controller = require("../../controllers/api.js");
 
 router.post('/uploadUrl', controller.upload);
 router.post('/startNode', controller.runNode);

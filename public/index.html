@@ -7,17 +7,19 @@
     <script src="libs/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body ng-app="cliApp" ng-controller="mainController" ng-init="reqRoom()">
+<body ng-app="cliApp" ng-init="reqRoom()" ng-controller="mainController">
     <div class="container" ng-class="{'expanded': isExpanded}">
         <h1 style="text-align:center">{{title}}</h1>
-        <div ng-include="bodyView">
+        <div ng-include="bodyView" ng-controller="socketController">
         </div>
     </div>
     <script src="app/app.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="libs/angular-socket-io/socket.min.js"></script>
     <script src="app/controllers/mainController.js"></script>
-    <script src="app/services/http.js"></script>
+    <script src="app/controllers/socketController.js"></script>
+    <script src="app/controllers/terminalController.js"></script>
+    <script src="app/services/httpFactory.js"></script>
     <script src="app/services/socketService.js"></script>
     <script src="libs/materialize.min.js"></script>
 </body>

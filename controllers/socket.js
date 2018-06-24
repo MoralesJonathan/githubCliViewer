@@ -1,4 +1,4 @@
-﻿const mainController = require('./index.js');
+﻿const apiController = require('./api.js');
 module.exports.connect = socket_io => {
     console.log("A user has connected");
     socket_io.on('joinRoom', room => {
@@ -13,7 +13,7 @@ module.exports.connect = socket_io => {
     socket_io.on('disconnect', () => {
         if (socket_io.spawnedProcess) {
             const process = socket_io.spawnedProcess;
-            mainController.killProcess(process);
+            apiController.killProcess(process);
         }
         console.log("A user has disconnected");
     });
